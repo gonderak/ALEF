@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>مدرسه کنکور الف | فرمول قبولی ۴+۳</title>
+  <meta name="description" content="مدرسه کنکور الف تحت نظارت مهندس ارسلان فیروزنیا — فرمول ۴+۳، پانسیون مطالعاتی VIP" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: {
+              950: '#0a1628',
+              900: '#0f2137',
+              800: '#163050',
+              700: '#1e3a5f',
+              600: '#1e40af',
+              500: '#1d4ed8'
+            },
+            yellow: {
+              400: '#facc15',
+              500: '#eab308',
+              600: '#ca8a04'
+            }
+          },
+          fontFamily: { vazir: ['Vazirmatn', 'Tahoma', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
+  <style>
+    * { font-family: 'Vazirmatn', Tahoma, sans-serif; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: #ffffff;
+      color: #0a1628;
+      overflow-x: hidden;
+      max-width: 480px;
+      margin: 0 auto;
+      min-height: 100vh;
+    }
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-thumb { background: #eab308; border-radius: 4px; }
+
+    .glass {
+      background: #ffffff;
+      border: 1px solid rgba(10, 22, 40, 0.08);
+      box-shadow: 0 4px 20px rgba(10, 22, 40, 0.06);
+    }
+
+    .text-gradient {
+      background: linear-gradient(135deg, #1e40af, #0a1628);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+
+    .day-card {
+      border-radius: 14px;
+      padding: 12px 6px;
+      text-align: center;
+    }
+    .class-day {
+      background: linear-gradient(145deg, #0f2137, #1e3a5f);
+      color: #fff;
+      box-shadow: 0 6px 18px rgba(10, 22, 40, 0.25);
+    }
+    .study-day {
+      background: #f8fafc;
+      color: #0f2137;
+      border: 1px solid rgba(10, 22, 40, 0.1);
+    }
+    .day-name { font-weight: 900; font-size: 13px; margin-bottom: 4px; }
+    .day-type { font-weight: 700; font-size: 12px; }
+
+    .formula-plus {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      margin: 22px 0 4px;
+    }
+    .formula-num {
+      width: 68px;
+      height: 68px;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 30px;
+      font-weight: 900;
+    }
+    .formula-num-3 {
+      color: #fff;
+      background: linear-gradient(145deg, #0f2137, #1e3a5f);
+      box-shadow: 0 10px 28px rgba(10, 22, 40, 0.3);
+    }
+    .formula-num-4 {
+      color: #0f2137;
+      background: #ffffff;
+      border: 2px solid #eab308;
+      box-shadow: 0 6px 18px rgba(234, 179, 8, 0.2);
+    }
+    .formula-plus-sign {
+      font-size: 34px;
+      font-weight: 900;
+      color: #eab308;
+    }
+
+    .bale-btn {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 18px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #00a884, #008069);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+      box-shadow: 0 8px 24px rgba(0,168,132,0.3);
+    }
+    .bale-btn:active { transform: scale(0.97); }
+
+    .portrait-card {
+      border-radius: 24px;
+      overflow: hidden;
+      border: 2px solid rgba(10, 22, 40, 0.1);
+      box-shadow: 0 16px 48px rgba(10, 22, 40, 0.1);
+    }
+    .portrait-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+    }
+    .ranks-img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 16px;
+    }
+
+    /* Teacher cards */
+    .teacher-card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 52px 12px 14px;
+      margin-top: 40px;
+      min-height: 190px;
+      border: 1px solid rgba(10, 22, 40, 0.08);
+      box-shadow: 0 8px 28px rgba(10, 22, 40, 0.06);
+      text-align: center;
+    }
+    .teacher-photo {
+      position: absolute;
+      top: -36px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #fff;
+      box-shadow: 0 6px 18px rgba(10, 22, 40, 0.15);
+      background: #f1f5f9;
+    }
+    .teacher-name {
+      font-weight: 900;
+      font-size: 13px;
+      color: #0a1628;
+      margin-bottom: 2px;
+    }
+    .teacher-dept {
+      font-size: 11px;
+      font-weight: 700;
+      color: #1e40af;
+      margin-bottom: 6px;
+    }
+    .teacher-bio {
+      flex: 1;
+      font-size: 10px;
+      line-height: 1.6;
+      color: rgba(10, 22, 40, 0.55);
+      text-align: right;
+    }
+    .teachers-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px 10px;
+      padding-top: 8px;
+    }
+    .teachers-grid > .teacher-card:nth-child(odd):last-child {
+      grid-column: 1 / -1;
+      width: calc(50% - 5px);
+      justify-self: center;
+    }
+
+    /* Taraz cards */
+    .taraz-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .taraz-card {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 14px 12px;
+      border: 1px solid rgba(10, 22, 40, 0.08);
+      box-shadow: 0 6px 20px rgba(10, 22, 40, 0.05);
+      text-align: center;
+    }
+    .taraz-score {
+      font-size: 22px;
+      font-weight: 900;
+      color: #1e40af;
+      line-height: 1.2;
+    }
+    .taraz-name {
+      font-size: 12px;
+      font-weight: 800;
+      color: #0a1628;
+      margin-top: 4px;
+    }
+    .taraz-meta {
+      font-size: 10px;
+      color: rgba(10, 22, 40, 0.5);
+      margin-top: 2px;
+    }
+
+    /* Pansion */
+    .pansion-feature {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 6px;
+    }
+    .pansion-feature .icon-box {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      background: linear-gradient(145deg, #fef9c3, #fef08a);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #0f2137;
+      font-size: 20px;
+    }
+
+    .section-pad { padding: 36px 16px; }
+    .divider {
+      height: 1px;
+      background: linear-gradient(to left, transparent, rgba(10, 22, 40, 0.12), transparent);
+      margin: 0 16px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 6px 14px;
+      border-radius: 50px;
+      background: #f8fafc;
+      border: 1px solid rgba(10, 22, 40, 0.08);
+      color: #1e40af;
+      font-size: 12px;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body class="font-vazir antialiased">
+
+<!-- HERO -->
+<section class="relative pt-10 pb-8 px-4 overflow-hidden">
+  <div class="absolute top-0 left-0 w-48 h-48 bg-yellow-400/20 rounded-full blur-3xl -translate-x-1/2"></div>
+  <div class="absolute bottom-0 right-0 w-40 h-40 bg-navy-500/10 rounded-full blur-3xl translate-x-1/3"></div>
+  <div class="relative z-10 text-center">
+    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass text-xs font-medium text-navy-700 mb-5 reveal">
+      <span class="w-2 h-2 rounded-full bg-yellow-500 animate-pulse"></span>
+      تحت نظارت مهندس ارسلان فیروزنیا
+    </div>
+    <h1 class="text-3xl font-black leading-tight mb-4 reveal" style="transition-delay:0.08s;">
+      فرمول قبولی کنکور
+      <br />
+      <span class="text-gradient">در مدرسه کنکور الف</span>
+    </h1>
+    <div class="inline-block mt-1 mb-5 px-5 py-2 rounded-2xl bg-gradient-to-l from-yellow-400 to-yellow-600 text-navy-950 text-2xl font-black reveal" style="transition-delay:0.12s;">
+      ۴ + ۳ است!
+    </div>
+    <p class="text-sm text-navy-900/70 leading-relaxed max-w-sm mx-auto reveal" style="transition-delay:0.18s;">
+      مدرسه‌ای که تمام برنامه‌های آن — کلاس، آزمون، مشاوره و سبک مطالعاتی — فقط برای موفقیت در کنکور سراسری و امتحان نهایی طراحی شده است.
+    </p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- WHY -->
+<section class="section-pad">
+  <div class="text-center mb-6 reveal">
+    <div class="badge mb-3">چرا مدرسه کنکور الف؟</div>
+    <h2 class="text-xl font-black text-navy-950">فقط یک مدرسه ساده نیست</h2>
+    <p class="text-xs text-navy-800/60 mt-2">موفقیت = معدل نهایی بالای ۱۸ + میانگین درصد بالای ۵۰٪</p>
+  </div>
+  <div class="space-y-3">
+    <div class="glass rounded-2xl p-4 reveal">
+      <div class="font-bold text-sm mb-1 text-navy-900">تمرکز همزمان تستی و تشریحی</div>
+      <p class="text-xs text-navy-800/60 leading-relaxed">نه تستی بر تشریحی ارجحیت دارد و نه برعکس. آمادگی کامل برای نهایی + کنکور.</p>
+    </div>
+    <div class="glass rounded-2xl p-4 reveal" style="transition-delay:0.05s;">
+      <div class="font-bold text-sm mb-1 text-navy-900">بدون تداخل برنامه‌ها</div>
+      <p class="text-xs text-navy-800/60 leading-relaxed">دیگر درگیر تداخل برنامه‌های تستی و تشریحی مدارس عادی، سمپاد و نمونه دولتی نیستید.</p>
+    </div>
+    <div class="glass rounded-2xl p-4 reveal" style="transition-delay:0.1s;">
+      <div class="font-bold text-sm mb-1 text-navy-900">پانسیون مطالعاتی VIP</div>
+      <p class="text-xs text-navy-800/60 leading-relaxed">تغییر عادات مطالعاتی اشتباه با نظارت مستقیم ناظر آموزشی و نظم بالا.</p>
+    </div>
+    <div class="glass rounded-2xl p-4 reveal" style="transition-delay:0.15s;">
+      <div class="font-bold text-sm mb-1 text-navy-900">بدون رفت‌وآمد روزانه</div>
+      <p class="text-xs text-navy-800/60 leading-relaxed">زمان بیشتر برای مطالعه مؤثر. حذف درگیری‌های حالت عادی مدرسه.</p>
+    </div>
+    <div class="glass rounded-2xl p-4 reveal" style="transition-delay:0.2s;">
+      <div class="font-bold text-sm mb-1 text-navy-900">مشاوره مستقیم با مهندس فیروزنیا</div>
+      <p class="text-xs text-navy-800/60 leading-relaxed">جلسات گروهی ماهانه + امکان پرسیدن مستقیم سوالات. برنامه‌ریزی سال‌محور و هفته‌محور.</p>
+    </div>
+    <div class="glass rounded-2xl p-4 reveal" style="transition-delay:0.25s;">
+      <div class="font-bold text-sm mb-1 text-navy-900">برترین اساتید کنکور ایران</div>
+      <p class="text-xs text-navy-800/60 leading-relaxed">دپارتمان‌های تخصصی با اساتید برند و باتجربه زیر نظر مهندس فیروزنیا.</p>
+    </div>
+    <div class="glass rounded-2xl p-4 reveal" style="transition-delay:0.3s;">
+      <div class="font-bold text-sm mb-1 text-navy-900">مسیر کنکور با لذت و سلامت روان</div>
+      <p class="text-xs text-navy-800/60 leading-relaxed">خدمات روانشناسی، مدیتیشن و مشاوره تغذیه. آرامش ذهنی اولویت ماست.</p>
+    </div>
+    <div class="glass rounded-2xl p-4 reveal" style="transition-delay:0.35s;">
+      <div class="font-bold text-sm mb-1 text-navy-900">فرمول آموزش مؤثر ۴+۳</div>
+      <p class="text-xs text-navy-800/60 leading-relaxed">۳ روز آموزش مفهومی + ۴ روز تسلط و تثبیت. استراتژی اثبات‌شده برای رتبه زیر ۱۰۰۰.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- پانسیون مطالعاتی -->
+<section class="section-pad">
+  <div class="text-center mb-5 reveal">
+    <div class="badge mb-3">پانسیون مطالعاتی VIP</div>
+    <h2 class="text-xl font-black text-navy-950">پانسیون مدرسه</h2>
+    <p class="text-xs text-navy-800/60 mt-2">محیطی آرام و هدفمند برای مطالعه عمیق و یادگیری مؤثر</p>
+  </div>
+
+  <!-- Poster -->
+  <div class="rounded-2xl overflow-hidden border border-navy-900/10 shadow-lg mb-6 reveal">
+    <img src="assets/pansion-poster.png.png" alt="پانسیون مطالعاتی مدرسه کنکور الف" class="w-full h-auto block"
+         onerror="this.parentElement.innerHTML='<div class=\'p-6 text-center text-sm text-navy-800/50\'>عکس پوستر پانسیون را در assets/pansion-poster.png قرار دهید</div>'" />
+  </div>
+
+  <!-- Hours -->
+  <div class="glass rounded-2xl p-4 mb-5 text-center reveal">
+    <div class="inline-flex items-center gap-2 bg-gradient-to-l from-yellow-400 to-yellow-600 text-navy-950 px-5 py-2.5 rounded-full font-black text-lg mb-3">
+      <span>۹:۰۰ تا ۱۲:۳۰</span>
+      <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+    </div>
+    <p class="text-xs text-navy-800/70 leading-relaxed">
+      پیش از شروع کلاس‌ها، بهترین زمان برای مطالعه و یادگیری<br>
+      در فضایی آرام، منظم و کاملاً آموزشی
+    </p>
+  </div>
+
+  <!-- 4 Features -->
+  <div class="grid grid-cols-2 gap-3 mb-5">
+    <div class="glass rounded-2xl p-4 pansion-feature reveal">
+      <div class="icon-box">📵</div>
+      <div class="font-bold text-xs text-navy-900">تحویل موبایل</div>
+      <div class="text-[10px] text-navy-800/55 leading-relaxed">و سایر وسایل هوشمند برای جلوگیری از حواس‌پرتی</div>
+    </div>
+    <div class="glass rounded-2xl p-4 pansion-feature reveal" style="transition-delay:0.05s;">
+      <div class="icon-box">👨‍🏫</div>
+      <div class="font-bold text-xs text-navy-900">نظارت ناظرین</div>
+      <div class="text-[10px] text-navy-800/55 leading-relaxed">و مشاوران آموزشی در تمام ساعات</div>
+    </div>
+    <div class="glass rounded-2xl p-4 pansion-feature reveal" style="transition-delay:0.1s;">
+      <div class="icon-box">📖</div>
+      <div class="font-bold text-xs text-navy-900">فرصت طلایی</div>
+      <div class="text-[10px] text-navy-800/55 leading-relaxed">برای مطالعه عمیق و حل تمرین</div>
+    </div>
+    <div class="glass rounded-2xl p-4 pansion-feature reveal" style="transition-delay:0.15s;">
+      <div class="icon-box">🎯</div>
+      <div class="font-bold text-xs text-navy-900">افزایش تمرکز</div>
+      <div class="text-[10px] text-navy-800/55 leading-relaxed">و بازدهی بالا در یادگیری</div>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 gap-4">
+    <div class="glass rounded-2xl p-4 reveal">
+      <div class="font-bold text-sm text-navy-700 mb-3">مزایای پانسیون صبحگاهی</div>
+      <ul class="space-y-2 text-xs text-navy-800/70">
+        <li class="flex items-start gap-2"><span class="text-yellow-500 font-bold">✓</span> شروع مطالعه از ساعت ۹</li>
+        <li class="flex items-start gap-2"><span class="text-yellow-500 font-bold">✓</span> خواب‌آلودگی کمتر و ذهنی آماده‌تر</li>
+        <li class="flex items-start gap-2"><span class="text-yellow-500 font-bold">✓</span> استفاده حداکثری از زمان قبل از کلاس</li>
+        <li class="flex items-start gap-2"><span class="text-yellow-500 font-bold">✓</span> ایجاد نظم و انضباط مطالعاتی</li>
+      </ul>
+    </div>
+    <div class="glass rounded-2xl p-4 reveal" style="transition-delay:0.08s;">
+      <div class="font-bold text-sm text-navy-700 mb-3">برنامه روزانه</div>
+      <div class="space-y-3 text-xs">
+        <div class="flex items-center justify-between bg-slate-50 rounded-xl px-3 py-2.5">
+          <span class="font-bold text-navy-900">۹:۰۰ تا ۱۲:۳۰</span>
+          <span class="text-navy-800/60">پانسیون و مطالعه</span>
+        </div>
+        <div class="flex items-center justify-between bg-slate-50 rounded-xl px-3 py-2.5">
+          <span class="font-bold text-navy-900">۱۳:۰۰ تا ۱۴:۰۰</span>
+          <span class="text-navy-800/60">زمان استراحت و ناهار</span>
+        </div>
+        <div class="flex items-center justify-between bg-slate-50 rounded-xl px-3 py-2.5">
+          <span class="font-bold text-navy-900">۱۴:۰۰ به بعد</span>
+          <span class="text-navy-800/60">شروع کلاس‌ها</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="text-center text-sm font-bold text-navy-700 mt-6 reveal">از صبح زود، یک قدم جلوتر باش!</p>
+</section>
+
+<div class="divider"></div>
+
+<!-- FORMULA -->
+<section class="section-pad">
+  <div class="text-center mb-6 reveal">
+    <div class="badge mb-3">استراتژی آموزشی</div>
+    <h2 class="text-xl font-black text-navy-950">فرمول آموزش مؤثر <span class="text-gradient">۴ + ۳</span></h2>
+    <p class="text-xs text-navy-800/60 mt-2">۳ روز آموزش · ۴ روز تسلط و تثبیت</p>
+  </div>
+  <div class="grid grid-cols-4 gap-2 mb-3 reveal">
+    <div class="day-card class-day"><div class="day-name">شنبه</div><div class="day-type">تدریس</div></div>
+    <div class="day-card study-day"><div class="day-name">یکشنبه</div><div class="day-type">تسلط</div></div>
+    <div class="day-card class-day"><div class="day-name">دوشنبه</div><div class="day-type">تدریس</div></div>
+    <div class="day-card study-day"><div class="day-name">سه‌شنبه</div><div class="day-type">تسلط</div></div>
+  </div>
+  <div class="grid grid-cols-3 gap-2 mb-5 reveal" style="transition-delay:0.08s;">
+    <div class="day-card class-day"><div class="day-name">چهارشنبه</div><div class="day-type">تدریس</div></div>
+    <div class="day-card study-day"><div class="day-name">پنجشنبه</div><div class="day-type">تسلط</div></div>
+    <div class="day-card study-day"><div class="day-name">جمعه</div><div class="day-type">تسلط</div></div>
+  </div>
+  <div class="glass rounded-2xl p-4 mb-5 reveal">
+    <div class="text-sm font-bold text-navy-700 mb-2">ساعت روزهای تحصیل</div>
+    <div class="text-sm text-navy-900/80 leading-relaxed">
+      ۹ صبح تا ۱۲:۳۰ — پانسیون مطالعاتی
+      <br />
+      ۱۳ تا ۱۹ — کلاس
+    </div>
+  </div>
+  <div class="formula-plus reveal">
+    <div class="formula-num formula-num-3">۳</div>
+    <div class="formula-plus-sign">+</div>
+    <div class="formula-num formula-num-4">۴</div>
+  </div>
+  <p class="text-center text-xs text-navy-800/50 mt-3 reveal">۳ روز آموزش مفهومی + ۴ روز تسلط و تثبیت</p>
+</section>
+
+<div class="divider"></div>
+
+<!-- RANKS -->
+<section class="section-pad">
+  <div class="text-center mb-4 reveal">
+    <div class="badge mb-3">افتخارات</div>
+    <h2 class="text-xl font-black text-navy-950">تالار افتخارات</h2>
+    <p class="text-xs text-navy-800/50 mt-1">افتخارآفرینان مدرسه کنکور الف</p>
+  </div>
+  <div class="rounded-2xl overflow-hidden border border-navy-900/10 shadow-lg reveal mb-4">
+    <img src="assets/ranks_honors.jpg" alt="تالار افتخارات مدرسه کنکور الف" class="ranks-img" />
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- باشگاه حرفه‌ای‌ها -->
+<section class="section-pad">
+  <div class="text-center mb-5 reveal">
+    <div class="badge mb-3">باشگاه حرفه‌ای‌ها</div>
+    <h2 class="text-xl font-black text-navy-950">کارنامه‌های برتر آکادمی</h2>
+    <p class="text-xs text-navy-800/50 mt-1">ترازهای واقعی دانش‌آموزان مدرسه کنکور الف</p>
+  </div>
+  <div class="taraz-grid">
+    <div class="taraz-card reveal">
+      <div class="taraz-score">۷۰۶۱</div>
+      <div class="taraz-name">سیده محدثه سادات حسینی</div>
+      <div class="taraz-meta">دوازدهم تجربی</div>
+    </div>
+    <div class="taraz-card reveal" style="transition-delay:0.05s;">
+      <div class="taraz-score">۶۹۶۰</div>
+      <div class="taraz-name">شهربانو پرکار</div>
+      <div class="taraz-meta">دوازدهم ریاضی</div>
+    </div>
+    <div class="taraz-card reveal" style="transition-delay:0.1s;">
+      <div class="taraz-score">۶۹۴۴</div>
+      <div class="taraz-name">محمدحسین یوسفی</div>
+      <div class="taraz-meta">دوازدهم تجربی</div>
+    </div>
+    <div class="taraz-card reveal" style="transition-delay:0.15s;">
+      <div class="taraz-score">۶۷۶۶</div>
+      <div class="taraz-name">دیونا سادات شهاب‌الدینی</div>
+      <div class="taraz-meta">دوازدهم تجربی</div>
+    </div>
+    <div class="taraz-card reveal" style="transition-delay:0.2s;">
+      <div class="taraz-score">۶۶۲۴</div>
+      <div class="taraz-name">سپیده هدایت‌پور</div>
+      <div class="taraz-meta">دوازدهم ریاضی</div>
+    </div>
+    <div class="taraz-card reveal" style="transition-delay:0.25s;">
+      <div class="taraz-score">۶۶۱۱</div>
+      <div class="taraz-name">آروین حریری</div>
+      <div class="taraz-meta">دوازدهم تجربی</div>
+    </div>
+    <div class="taraz-card reveal" style="transition-delay:0.3s;">
+      <div class="taraz-score">۶۵۵۸</div>
+      <div class="taraz-name">محمدطاها احمدی</div>
+      <div class="taraz-meta">دوازدهم تجربی</div>
+    </div>
+    <div class="taraz-card reveal" style="transition-delay:0.35s;">
+      <div class="taraz-score">۶۵۳۸</div>
+      <div class="taraz-name">ملیکا سلمانی</div>
+      <div class="taraz-meta">دوازدهم تجربی</div>
+    </div>
+    <div class="taraz-card reveal" style="transition-delay:0.4s;">
+      <div class="taraz-score">۶۴۹۷</div>
+      <div class="taraz-name">بارمان باربد</div>
+      <div class="taraz-meta">دوازدهم تجربی</div>
+    </div>
+    <div class="taraz-card reveal" style="transition-delay:0.45s;">
+      <div class="taraz-score">۶۴۲۸</div>
+      <div class="taraz-name">امیررضا گل‌فشان</div>
+      <div class="taraz-meta">دوازدهم تجربی</div>
+    </div>
+    <div class="taraz-card reveal" style="transition-delay:0.5s;">
+      <div class="taraz-score">۶۳۲۶</div>
+      <div class="taraz-name">روزبه کریم‌خانی</div>
+      <div class="taraz-meta">دوازدهم تجربی</div>
+    </div>
+    <div class="taraz-card reveal" style="transition-delay:0.55s;">
+      <div class="taraz-score">۷۴۵۳</div>
+      <div class="taraz-name">هانیه اصلانی</div>
+      <div class="taraz-meta">دوازدهم انسانی</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- VIDEOS: direct src, full uncropped frame -->
+<section class="px-4 py-10">
+  <div class="relative overflow-hidden rounded-[28px] bg-navy-950 px-3.5 py-6 shadow-[0_20px_50px_rgba(10,22,40,0.22)]">
+    <div class="pointer-events-none absolute -left-16 -top-16 h-44 w-44 rounded-full bg-yellow-400/10 blur-3xl"></div>
+    <div class="pointer-events-none absolute -bottom-20 -right-16 h-48 w-48 rounded-full bg-blue-500/20 blur-3xl"></div>
+
+    <div class="relative mb-6 flex items-center justify-between gap-3 px-1 reveal">
+      <div>
+        <div class="mb-2 inline-flex items-center gap-1.5 rounded-full border border-yellow-400/25 bg-yellow-400/10 px-3 py-1 text-[10px] font-extrabold text-yellow-400">
+          <span class="h-1.5 w-1.5 rounded-full bg-yellow-400"></span>
+          گالری ویدئویی
+        </div>
+        <h2 class="text-lg font-black leading-7 text-white">مدرسه الف از نزدیک‌تر</h2>
+      </div>
+      <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-yellow-400 text-navy-950 shadow-lg shadow-yellow-400/20">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+      </div>
+    </div>
+
+    <div class="relative flex flex-col gap-4">
+      <article class="rounded-2xl border border-white/10 bg-white/[0.07] p-2 shadow-xl reveal">
+        <h3 class="px-2 pb-2.5 pt-1 text-sm font-black text-white">مدرسه الف از نزدیک‌تر</h3>
+        <div class="overflow-hidden rounded-xl bg-black">
+          <video src="assets/5.mp4" class="block h-auto w-full bg-black object-contain" controls playsinline preload="metadata" aria-label="ویدیوی مدرسه الف از نزدیک‌تر"></video>
+        </div>
+      </article>
+
+      <article class="rounded-2xl border border-white/10 bg-white/[0.07] p-2 reveal" style="transition-delay:0.05s;">
+        <h3 class="px-2 pb-2.5 pt-1 text-sm font-black text-white">نظر خود دانش‌آموزها</h3>
+        <div class="overflow-hidden rounded-xl bg-black">
+          <video src="assets/6.mp4" class="block h-auto w-full bg-black object-contain" controls playsinline preload="metadata" aria-label="ویدیوی نظر دانش‌آموزها"></video>
+        </div>
+      </article>
+
+      <article class="rounded-2xl border border-white/10 bg-white/[0.07] p-2 reveal" style="transition-delay:0.1s;">
+        <h3 class="px-2 pb-2.5 pt-1 text-sm font-black text-white">فرمول ۴+۳ چطور کار می‌کند؟</h3>
+        <div class="overflow-hidden rounded-xl bg-black">
+          <video src="assets/3.mp4" class="block h-auto w-full bg-black object-contain" controls playsinline preload="metadata" aria-label="ویدیوی فرمول چهار به علاوه سه"></video>
+        </div>
+      </article>
+
+      <article class="rounded-2xl border border-white/10 bg-white/[0.07] p-2 reveal" style="transition-delay:0.15s;">
+        <h3 class="px-2 pb-2.5 pt-1 text-sm font-black text-white">پانسیون VIP از نزدیک</h3>
+        <div class="overflow-hidden rounded-xl bg-black">
+          <video src="assets/2.mp4" class="block h-auto w-full bg-black object-contain" controls playsinline preload="metadata" aria-label="ویدیوی پانسیون وی‌آی‌پی"></video>
+        </div>
+      </article>
+
+      <article class="rounded-2xl border border-white/10 bg-white/[0.07] p-2 reveal" style="transition-delay:0.2s;">
+        <h3 class="px-2 pb-2.5 pt-1 text-sm font-black text-white">نظر اساتید مدرسه</h3>
+        <div class="overflow-hidden rounded-xl bg-black">
+          <video src="assets/4.mp4" class="block h-auto w-full bg-black object-contain" controls playsinline preload="metadata" aria-label="ویدیوی نظر اساتید"></video>
+        </div>
+      </article>
+
+      <article class="rounded-2xl border border-white/10 bg-white/[0.07] p-2 reveal" style="transition-delay:0.25s;">
+        <h3 class="px-2 pb-2.5 pt-1 text-sm font-black text-white">مسیر موفقیت دانش‌آموزها</h3>
+        <div class="overflow-hidden rounded-xl bg-black">
+          <video src="assets/4-1.mp4" class="block h-auto w-full bg-black object-contain" controls playsinline preload="metadata" aria-label="ویدیوی مسیر موفقیت دانش‌آموزها"></video>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- TEACHERS -->
+<section class="section-pad">
+  <div class="text-center mb-2 reveal">
+    <div class="badge mb-3">تیم آموزشی</div>
+    <h2 class="text-xl font-black text-navy-950">اساتید مدرسه کنکور الف</h2>
+    <p class="text-xs text-navy-800/50 mt-1">با اساتید برتر مدارس و مؤسسات تهران</p>
+  </div>
+  <div class="teachers-grid">
+    <div class="teacher-card reveal">
+      <img class="teacher-photo" src="assets/teachers/baghdadchi.jpg" alt="رضا بغدادیچی" />
+      <div class="teacher-name">رضا بغدادیچی</div>
+      <div class="teacher-dept">دپارتمان ریاضی</div>
+      <div class="teacher-bio">• فوق‌لیسانس مهندسی صنایع<br/>• ۲۰ سال سابقه تدریس در مدارس تهران</div>
+    </div>
+    <div class="teacher-card reveal" style="transition-delay:0.05s;">
+      <img class="teacher-photo" src="assets/teachers/salimian.jpg" alt="سامان سلیمان" />
+      <div class="teacher-name">سامان سلیمان</div>
+      <div class="teacher-dept">دپارتمان ریاضی</div>
+      <div class="teacher-bio">• دکترای روانشناسی<br/>• مهندسی عمران امیرکبیر<br/>• مدرس فیلم‌های آموزشی گاج</div>
+    </div>
+    <div class="teacher-card reveal" style="transition-delay:0.1s;">
+      <img class="teacher-photo" src="assets/teachers/abbasi.jpg" alt="علی عباسی" />
+      <div class="teacher-name">علی عباسی</div>
+      <div class="teacher-dept">دپارتمان فیزیک</div>
+      <div class="teacher-bio">• ۱۷ سال سابقه تدریس<br/>• مدارس و آموزشگاه‌های معتبر تهران</div>
+    </div>
+    <div class="teacher-card reveal" style="transition-delay:0.15s;">
+      <img class="teacher-photo" src="assets/teachers/jafari.jpg" alt="ابوالفضل جعفری" />
+      <div class="teacher-name">ابوالفضل جعفری</div>
+      <div class="teacher-dept">دپارتمان زیست</div>
+      <div class="teacher-bio">• کارشناس زیست‌شناسی<br/>• مؤلف کتاب زیست تصویری و زیست جیبی</div>
+    </div>
+    <div class="teacher-card reveal" style="transition-delay:0.2s;">
+      <img class="teacher-photo" src="assets/teachers/eshtehardi.jpg" alt="پرهام اشتهاردی" />
+      <div class="teacher-name">پرهام اشتهاردی</div>
+      <div class="teacher-dept">دپارتمان شیمی</div>
+      <div class="teacher-bio">• کارشناسی ارشد شیمی آلی<br/>• مؤلف کتاب شیمی جامع علوی</div>
+    </div>
+    <div class="teacher-card reveal" style="transition-delay:0.25s;">
+      <img class="teacher-photo" src="assets/teachers/eslahzade.jpg" alt="امیر اصلانی‌زاده" />
+      <div class="teacher-name">امیر اصلانی‌زاده</div>
+      <div class="teacher-dept">دپارتمان شیمی</div>
+      <div class="teacher-bio">• ارشد مهندسی شیمی شریف<br/>• رتبه ۶ کنکور ارشد · رتبه ۲۰۰ کنکور</div>
+    </div>
+    <div class="teacher-card reveal" style="transition-delay:0.3s;">
+      <img class="teacher-photo" src="assets/teachers/amin.jpg" alt="میثم امین" loading="lazy" decoding="async" />
+      <div class="teacher-name">میثم امین</div>
+      <div class="teacher-dept">هندسه و گسسته</div>
+      <div class="teacher-bio">• مؤلف کتاب «سوت پایان» رشته ریاضی<br/>• مؤلف کتاب آمار و احتمال یازدهم، انتشارات مدرسان شریف<br/>• مدرس مدارس برتر تهران، از جمله فرزانگان و پیشگامان</div>
+    </div>
+    <div class="teacher-card reveal" style="transition-delay:0.35s;">
+      <img class="teacher-photo" src="assets/teachers/arbabi.jpg" alt="محمد ارباب‌بهرامی" loading="lazy" decoding="async" />
+      <div class="teacher-name">محمد ارباب‌بهرامی</div>
+      <div class="teacher-dept">هندسه و گسسته</div>
+      <div class="teacher-bio">• مؤلف کتاب‌های میکرو گاج<br/>• طراح و تحلیل‌گر آزمون‌های قلم‌چی<br/>• مدرس مدارس برتر تهران، از جمله علامه حلی و ملاصدرا</div>
+    </div>
+    <div class="teacher-card reveal" style="transition-delay:0.4s;">
+      <img class="teacher-photo" src="assets/teachers/keshavarz.jpg" alt="پیمان کشاورز" loading="lazy" decoding="async" />
+      <div class="teacher-name">پیمان کشاورز</div>
+      <div class="teacher-dept">عربی</div>
+      <div class="teacher-bio">• فوق‌لیسانس مهندسی صنایع از دانشگاه تربیت مدرس<br/>• بیش از ۲۰ سال سابقه تدریس در مدارس و مؤسسات برتر، از جمله بعثت و راه اندیشه</div>
+    </div>
+    <div class="teacher-card reveal" style="transition-delay:0.45s;">
+      <img class="teacher-photo" src="assets/teachers/fariba.jpg" alt="فریبا کمال‌آبادی" loading="lazy" decoding="async" />
+      <div class="teacher-name">فریبا کمال‌آبادی</div>
+      <div class="teacher-dept">زبان انگلیسی</div>
+      <div class="teacher-bio">• کارشناسی ارشد آموزش زبان انگلیسی<br/>• ۲۲ سال سابقه تدریس در مدارس و آموزشگاه‌های برتر تهران</div>
+    </div>
+    <div class="teacher-card reveal" style="transition-delay:0.5s;">
+      <img class="teacher-photo" src="assets/teachers/adabiat.jpg" alt="ابراهیم کاظمی‌مقدم" loading="lazy" decoding="async" />
+      <div class="teacher-name">ابراهیم کاظمی‌مقدم</div>
+      <div class="teacher-dept">ادبیات فارسی</div>
+      <div class="teacher-bio">• دکترای زبان و ادبیات فارسی<br/>• مؤلف کتاب‌های مؤسسه پیک نخبگان و نادوشان<br/>• ۲۸ سال سابقه فعالیت در دبیرستان‌ها و مؤسسات تهران<br/>• ۱۲ سال استاد پروازی به تبریز، زابل، بابل و سایر شهرها</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section-pad pb-12">
+  <div class="text-center mb-5 reveal">
+    <div class="badge mb-3">ارتباط</div>
+    <h2 class="text-xl font-black text-navy-950">راه‌های ارتباطی</h2>
+  </div>
+  <a href="https://ble.ir/arsalanfirouznia" target="_blank" class="bale-btn mb-5 reveal">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="11" fill="white" fill-opacity="0.2"/>
+      <path d="M7 12.5l3 3 7-7" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <div class="flex-1 text-right">
+      <div class="text-sm font-bold">پیام در بله</div>
+      <div class="text-xs opacity-90" dir="ltr">@arsalanfiruznia</div>
+    </div>
+  </a>
+  <div class="flex gap-2 mb-8 reveal">
+    <a href="https://instagram.com/arsalan.firouznia" target="_blank" class="flex-1 glass rounded-xl py-3 text-center text-xs font-bold text-navy-700">اینستاگرام</a>
+    <a href="https://t.me/arsalanfirouznia" target="_blank" class="flex-1 glass rounded-xl py-3 text-center text-xs font-bold text-navy-700">تلگرام</a>
+    <a href="https://alefac.ir" target="_blank" class="flex-1 glass rounded-xl py-3 text-center text-xs font-bold text-navy-700">وبسایت</a>
+  </div>
+  <div class="portrait-card reveal">
+    <img src="assets/firouznia.png.jpg" alt="مهندس ارسلان فیروزنیا"
+         onerror="this.style.display='none'; var f=this.parentElement.querySelector('.fallback-photo'); if(f) f.style.display='flex';" />
+    <div class="fallback-photo" style="display:none;min-height:220px;align-items:center;justify-content:center;background:linear-gradient(135deg,#0f2137,#0a1628);color:#fff;">
+      <div class="text-center p-6">
+        <div style="font-size:48px;margin-bottom:12px;">👤</div>
+        <div class="text-sm" style="opacity:0.7;">عکس را در assets/firouznia.png قرار دهید</div>
+      </div>
+    </div>
+    <div class="p-4 bg-white text-center">
+      <div class="font-black text-base text-navy-950">مهندس ارسلان فیروزنیا</div>
+      <div class="text-xs text-navy-600 mt-1">مدیر آموزشی مدرسه کنکور الف</div>
+      <div class="text-xs text-navy-800/40 mt-1">۱۶ سال سابقه مشاوره و پانسیون مطالعاتی</div>
+    </div>
+  </div>
+  <p class="text-center text-[11px] text-navy-800/30 mt-8">© مدرسه کنکور الف — تمامی حقوق محفوظ است</p>
+</section>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('active'); });
+  }, { threshold: 0.12, rootMargin: '0px 0px -16px 0px' });
+  reveals.forEach(el => io.observe(el));
+  setTimeout(() => {
+    document.querySelectorAll('section:first-of-type .reveal').forEach((el, i) => {
+      setTimeout(() => el.classList.add('active'), i * 80);
+    });
+  }, 120);
+</script>
+</body>
+</html>
