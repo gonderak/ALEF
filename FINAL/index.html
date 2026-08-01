@@ -279,32 +279,303 @@
       font-size: 12px;
       font-weight: 600;
     }
+
+    /* Intro profile */
+    .intro-hero {
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      padding: 34px 16px 38px;
+      color: #fff;
+      background:
+              radial-gradient(circle at 12% 10%, rgba(250, 204, 21, 0.2), transparent 34%),
+              radial-gradient(circle at 88% 54%, rgba(29, 78, 216, 0.28), transparent 42%),
+              linear-gradient(155deg, #07101f 0%, #0f2137 54%, #163050 100%);
+    }
+    .intro-hero::after {
+      content: '';
+      position: absolute;
+      z-index: -1;
+      inset: auto -15% -95px;
+      height: 145px;
+      border-radius: 50% 50% 0 0;
+      background: rgba(255,255,255,0.04);
+    }
+    .intro-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 13px;
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.86);
+      font-size: 11px;
+      font-weight: 700;
+      backdrop-filter: blur(12px);
+      animation: introFade 0.65s 0.08s both;
+    }
+    .intro-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #facc15;
+      box-shadow: 0 0 0 5px rgba(250,204,21,0.11);
+      animation: introPulse 1.8s ease-in-out infinite;
+    }
+    .intro-portrait {
+      position: relative;
+      width: min(76%, 285px);
+      margin: 24px auto 16px;
+      padding: 7px;
+      border-radius: 30px;
+      background: linear-gradient(145deg, rgba(250,204,21,0.95), rgba(255,255,255,0.22));
+      box-shadow: 0 24px 55px rgba(0,0,0,0.35), 0 0 0 8px rgba(255,255,255,0.04);
+      animation: portraitEnter 0.9s cubic-bezier(.16,1,.3,1) both;
+    }
+    .intro-portrait::before,
+    .intro-portrait::after {
+      content: '';
+      position: absolute;
+      z-index: -1;
+      border: 1px solid rgba(250,204,21,0.22);
+      border-radius: 34px;
+      inset: -10px;
+      animation: portraitRing 2.6s ease-in-out infinite;
+    }
+    .intro-portrait::after { inset: -19px; animation-delay: 0.5s; }
+    .intro-portrait img {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-height: 410px;
+      object-fit: contain;
+      border-radius: 24px;
+      background: #e9eef5;
+    }
+    .intro-copy { animation: introFade 0.75s 0.28s both; }
+    .intro-name { font-size: 24px; line-height: 1.5; font-weight: 900; }
+    .intro-role { color: #facc15; font-size: 12px; font-weight: 800; }
+    .intro-lead {
+      max-width: 390px;
+      margin: 13px auto 0;
+      color: rgba(255,255,255,0.68);
+      font-size: 12px;
+      line-height: 1.9;
+    }
+    .intro-stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 8px;
+      margin-top: 20px;
+      animation: introFade 0.75s 0.43s both;
+    }
+    .intro-stat {
+      min-height: 76px;
+      padding: 12px 7px;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      background: rgba(255,255,255,0.07);
+      backdrop-filter: blur(10px);
+    }
+    .intro-stat strong { display: block; color: #facc15; font-size: 17px; font-weight: 900; }
+    .intro-stat span { display: block; margin-top: 3px; color: rgba(255,255,255,0.65); font-size: 9px; line-height: 1.55; }
+    .intro-actions {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 9px;
+      margin-top: 18px;
+      animation: introFade 0.75s 0.56s both;
+    }
+    .intro-action {
+      display: flex;
+      min-height: 47px;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      border-radius: 15px;
+      font-size: 11px;
+      font-weight: 900;
+      text-decoration: none;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+    .intro-action:active { transform: scale(0.97); }
+    .intro-action.primary { border: 0; background: #facc15; color: #0a1628; box-shadow: 0 10px 25px rgba(250,204,21,0.18); }
+    .intro-action.secondary { border: 1px solid rgba(255,255,255,0.16); background: rgba(255,255,255,0.07); color: #fff; }
+
+    /* Profile modal */
+    .profile-modal {
+      position: fixed;
+      z-index: 100;
+      inset: 0;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding: 14px;
+      background: rgba(3, 8, 18, 0.72);
+      opacity: 0;
+      visibility: hidden;
+      backdrop-filter: blur(7px);
+      transition: opacity 0.28s ease, visibility 0.28s ease;
+    }
+    .profile-modal.open { opacity: 1; visibility: visible; }
+    .profile-modal-panel {
+      width: min(100%, 452px);
+      max-height: min(86vh, 720px);
+      overflow-y: auto;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 27px 27px 20px 20px;
+      background: #fff;
+      color: #0a1628;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.42);
+      transform: translateY(36px) scale(0.98);
+      transition: transform 0.42s cubic-bezier(.16,1,.3,1);
+    }
+    .profile-modal.open .profile-modal-panel { transform: translateY(0) scale(1); }
+    .profile-modal-head {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 18px;
+      border-radius: 27px 27px 0 0;
+      color: #fff;
+      background: linear-gradient(145deg, #0a1628, #163050);
+    }
+    .profile-modal-head img {
+      width: 74px;
+      height: 88px;
+      object-fit: contain;
+      border: 2px solid rgba(250,204,21,0.7);
+      border-radius: 16px;
+      background: #e9eef5;
+    }
+    .modal-close {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      width: 34px;
+      height: 34px;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 50%;
+      color: #fff;
+      background: rgba(255,255,255,0.08);
+      font-size: 20px;
+      cursor: pointer;
+    }
+    .profile-modal-body { padding: 18px; }
+    .profile-points { display: grid; gap: 9px; }
+    .profile-point {
+      display: flex;
+      align-items: flex-start;
+      gap: 9px;
+      padding: 11px 12px;
+      border: 1px solid rgba(10,22,40,0.07);
+      border-radius: 14px;
+      background: #f8fafc;
+      color: rgba(10,22,40,0.7);
+      font-size: 11px;
+      line-height: 1.75;
+    }
+    .profile-check { flex: 0 0 20px; color: #ca8a04; font-weight: 900; }
+    .student-results { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 11px; }
+    .student-result { padding: 11px 8px; border-radius: 14px; text-align: center; background: #0f2137; color: #fff; }
+    .student-result strong { display: block; color: #facc15; font-size: 17px; font-weight: 900; }
+    .student-result span { display: block; margin-top: 2px; font-size: 9px; color: rgba(255,255,255,0.68); }
+    body.modal-open { overflow: hidden; }
+
+    @keyframes portraitEnter {
+      from { opacity: 0; transform: translateY(26px) scale(0.91); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    @keyframes introFade {
+      from { opacity: 0; transform: translateY(14px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes portraitRing {
+      0%, 100% { opacity: 0.2; transform: scale(0.98); }
+      50% { opacity: 0.75; transform: scale(1.02); }
+    }
+    @keyframes introPulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(0.7); opacity: 0.55; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .intro-badge, .intro-portrait, .intro-copy, .intro-stats, .intro-actions { animation: none; }
+      .intro-dot, .intro-portrait::before, .intro-portrait::after { animation: none; }
+      .profile-modal, .profile-modal-panel { transition: none; }
+    }
   </style>
 </head>
 <body class="font-vazir antialiased">
 
 <!-- HERO -->
-<section class="relative pt-10 pb-8 px-4 overflow-hidden">
-  <div class="absolute top-0 left-0 w-48 h-48 bg-yellow-400/20 rounded-full blur-3xl -translate-x-1/2"></div>
-  <div class="absolute bottom-0 right-0 w-40 h-40 bg-navy-500/10 rounded-full blur-3xl translate-x-1/3"></div>
-  <div class="relative z-10 text-center">
-    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass text-xs font-medium text-navy-700 mb-5 reveal">
-      <span class="w-2 h-2 rounded-full bg-yellow-500 animate-pulse"></span>
-      تحت نظارت مهندس ارسلان فیروزنیا
-    </div>
-    <h1 class="text-3xl font-black leading-tight mb-4 reveal" style="transition-delay:0.08s;">
-      فرمول قبولی کنکور
-      <br />
-      <span class="text-gradient">در مدرسه کنکور الف</span>
-    </h1>
-    <div class="inline-block mt-1 mb-5 px-5 py-2 rounded-2xl bg-gradient-to-l from-yellow-400 to-yellow-600 text-navy-950 text-2xl font-black reveal" style="transition-delay:0.12s;">
-      ۴ + ۳ است!
-    </div>
-    <p class="text-sm text-navy-900/70 leading-relaxed max-w-sm mx-auto reveal" style="transition-delay:0.18s;">
-      مدرسه‌ای که تمام برنامه‌های آن — کلاس، آزمون، مشاوره و سبک مطالعاتی — فقط برای موفقیت در کنکور سراسری و امتحان نهایی طراحی شده است.
+<section class="intro-hero text-center" aria-labelledby="intro-title">
+  <div class="intro-badge">
+    <span class="intro-dot" aria-hidden="true"></span>
+    مدیریت و نظارت مستقیم مدرسه کنکور الف
+  </div>
+
+  <figure class="intro-portrait">
+    <img src="assets/firouznia.png.jpg" alt="مهندس ارسلان فیروزنیا، مدیر آموزشی مدرسه کنکور الف" fetchpriority="high"
+         onerror="this.src='https://placehold.co/560x700/0f2137/facc15?text=Arsalan+Firouznia'; this.onerror=null;" />
+  </figure>
+
+  <div class="intro-copy">
+    <h1 id="intro-title" class="intro-name">مهندس ارسلان فیروزنیا</h1>
+    <div class="intro-role">مدیر آموزشی و مشاور ارشد مدرسه کنکور الف</div>
+    <p class="intro-lead">
+      با بیش از ۱۶ سال تجربه در مشاوره تحصیلی و مدیریت پانسیون مطالعاتی؛ طراح مسیر آموزشی منسجم برای موفقیت هم‌زمان در امتحانات نهایی و کنکور سراسری.
     </p>
   </div>
+
+  <div class="intro-stats" aria-label="خلاصه سوابق">
+    <div class="intro-stat"><strong>۱۶+ سال</strong><span>سابقه مشاوره و هدایت تحصیلی</span></div>
+    <div class="intro-stat"><strong>۴+۳</strong><span>مدل آموزش، تسلط و تثبیت</span></div>
+    <div class="intro-stat"><strong>نظارت</strong><span>مستقیم بر برنامه و پیشرفت دانش‌آموز</span></div>
+  </div>
+
+  <div class="intro-actions">
+    <button type="button" class="intro-action primary" onclick="openArsalanProfile()" aria-haspopup="dialog">
+      مشاهده سوابق و نتایج
+      <span aria-hidden="true">←</span>
+    </button>
+    <a href="#honors" class="intro-action secondary">تالار افتخارات</a>
+  </div>
 </section>
+
+<div id="arsalanModal" class="profile-modal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="arsalanModalTitle" onclick="closeArsalanProfile(event)">
+  <div class="profile-modal-panel" role="document">
+    <div class="profile-modal-head">
+      <img src="assets/firouznia.png.jpg" alt="تصویر مهندس ارسلان فیروزنیا"
+           onerror="this.src='https://placehold.co/180x220/0f2137/facc15?text=AF'; this.onerror=null;" />
+      <div class="text-right pl-9">
+        <h2 id="arsalanModalTitle" class="text-base font-black">مهندس ارسلان فیروزنیا</h2>
+        <p class="mt-1 text-[10px] text-white/60">مدیر آموزشی و مشاور ارشد مدرسه کنکور الف</p>
+      </div>
+      <button type="button" class="modal-close" onclick="closeArsalanProfile(event)" aria-label="بستن پنجره">×</button>
+    </div>
+    <div class="profile-modal-body text-right">
+      <div class="mb-3 text-xs font-black text-navy-950">تجربه و شیوه مدیریت آموزشی</div>
+      <div class="profile-points">
+        <div class="profile-point"><span class="profile-check">✓</span><span>بیش از ۱۶ سال سابقه در مشاوره تحصیلی و مدیریت پانسیون‌های مطالعاتی</span></div>
+        <div class="profile-point"><span class="profile-check">✓</span><span>برنامه‌ریزی سال‌محور و هفته‌محور با پیگیری مستقیم عملکرد و عادت‌های مطالعاتی دانش‌آموزان</span></div>
+        <div class="profile-point"><span class="profile-check">✓</span><span>طراحی و اجرای فرمول ۴+۳: سه روز آموزش مفهومی و چهار روز تسلط، تمرین و تثبیت</span></div>
+        <div class="profile-point"><span class="profile-check">✓</span><span>هماهنگی دپارتمان‌های تخصصی و اساتید باتجربه برای آمادگی هم‌زمان امتحانات نهایی و کنکور</span></div>
+      </div>
+
+      <div class="mt-5 text-xs font-black text-navy-950">نمونه نتایج ثبت‌شده دانش‌آموزان آکادمی</div>
+      <p class="mt-1 text-[10px] leading-relaxed text-navy-800/50">ترازهای زیر بخشی از کارنامه‌های درج‌شده در باشگاه حرفه‌ای‌های مدرسه کنکور الف هستند.</p>
+      <div class="student-results">
+        <div class="student-result"><strong>۷۴۵۳</strong><span>هانیه اصلانی</span></div>
+        <div class="student-result"><strong>۷۰۶۱</strong><span>محدثه سادات حسینی</span></div>
+        <div class="student-result"><strong>۶۹۶۰</strong><span>شهربانو پرکار</span></div>
+        <div class="student-result"><strong>۶۹۴۴</strong><span>محمدحسین یوسفی</span></div>
+      </div>
+      <a href="#honors" class="mt-4 flex min-h-[44px] items-center justify-center rounded-xl bg-yellow-400 text-xs font-black text-navy-950" onclick="closeArsalanProfile(event, true)">مشاهده همه افتخارات</a>
+    </div>
+  </div>
+</div>
 
 <div class="divider"></div>
 
@@ -473,7 +744,7 @@
 <div class="divider"></div>
 
 <!-- RANKS -->
-<section class="section-pad">
+<section id="honors" class="section-pad scroll-mt-4">
   <div class="text-center mb-4 reveal">
     <div class="badge mb-3">افتخارات</div>
     <h2 class="text-xl font-black text-navy-950">تالار افتخارات</h2>
@@ -724,25 +995,37 @@
     <a href="https://t.me/arsalanfirouznia" target="_blank" class="flex-1 glass rounded-xl py-3 text-center text-xs font-bold text-navy-700">تلگرام</a>
     <a href="https://alefac.ir" target="_blank" class="flex-1 glass rounded-xl py-3 text-center text-xs font-bold text-navy-700">وبسایت</a>
   </div>
-  <div class="portrait-card reveal">
-    <img src="assets/firouznia.png.jpg" alt="مهندس ارسلان فیروزنیا"
-         onerror="this.style.display='none'; var f=this.parentElement.querySelector('.fallback-photo'); if(f) f.style.display='flex';" />
-    <div class="fallback-photo" style="display:none;min-height:220px;align-items:center;justify-content:center;background:linear-gradient(135deg,#0f2137,#0a1628);color:#fff;">
-      <div class="text-center p-6">
-        <div style="font-size:48px;margin-bottom:12px;">👤</div>
-        <div class="text-sm" style="opacity:0.7;">عکس را در assets/firouznia.png قرار دهید</div>
-      </div>
-    </div>
-    <div class="p-4 bg-white text-center">
-      <div class="font-black text-base text-navy-950">مهندس ارسلان فیروزنیا</div>
-      <div class="text-xs text-navy-600 mt-1">مدیر آموزشی مدرسه کنکور الف</div>
-      <div class="text-xs text-navy-800/40 mt-1">۱۶ سال سابقه مشاوره و پانسیون مطالعاتی</div>
-    </div>
-  </div>
   <p class="text-center text-[11px] text-navy-800/30 mt-8">© مدرسه کنکور الف — تمامی حقوق محفوظ است</p>
 </section>
 
 <script>
+  const profileModal = document.getElementById('arsalanModal');
+  const profileTrigger = document.querySelector('[onclick="openArsalanProfile()"]');
+
+  function openArsalanProfile() {
+    profileModal.classList.add('open');
+    profileModal.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('modal-open');
+    setTimeout(() => profileModal.querySelector('.modal-close').focus(), 80);
+  }
+
+  function closeArsalanProfile(event, goToHonors = false) {
+    if (event && !goToHonors && event.target !== profileModal && !event.target.classList.contains('modal-close')) return;
+    if (event) event.stopPropagation();
+    profileModal.classList.remove('open');
+    profileModal.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('modal-open');
+    if (goToHonors) {
+      setTimeout(() => document.getElementById('honors').scrollIntoView({ behavior: 'smooth' }), 180);
+    } else if (profileTrigger) {
+      profileTrigger.focus();
+    }
+  }
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && profileModal.classList.contains('open')) closeArsalanProfile(event);
+  });
+
   const reveals = document.querySelectorAll('.reveal');
   const io = new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('active'); });
